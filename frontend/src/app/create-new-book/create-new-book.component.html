@@ -1,0 +1,92 @@
+
+
+<div class="container mb-4">
+    <div class="row">
+      <div class="col-sm-5">
+        <div class=" border-dark">
+          <div class=" text-center ">
+            <h3>Create a new Book</h3>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="createBookForm" (submit)="onSubmitToCreate()">
+              <div class="form-group row">
+                <div class="mb-3">
+                    <input type='file'  (change)="onChange($event)"
+                    formControlName="logo" class="fst-italic" [ngClass]="{ 'is-invalid': submittedForCreation && f1['logo'].errors }" required placeholder="Logo " />
+                    <div *ngIf="submittedForCreation && f1['logo'].errors" class="invalid-feedback">
+                      <div *ngIf="f1['logo'].errors['required']">Logo is required</div>
+                  </div>
+                  </div>
+
+                <div class="mb-3">
+                    <input type='text'
+                    formControlName="category" class="fst-italic" [ngClass]="{ 'is-invalid': submittedForCreation && f1['category'].errors }" required placeholder="Category " />
+                    <div *ngIf="submittedForCreation && f1['category'].errors" class="invalid-feedback">
+                      <div *ngIf="f1['category'].errors['required']">Category is required</div>
+                  </div>
+                  </div>
+                <div class="mb-3">
+                    <input type='text'
+                    formControlName="title" class="fst-italic" [ngClass]="{ 'is-invalid': submittedForCreation && f1['title'].errors }" required placeholder="Title " />
+                    <div *ngIf="submittedForCreation && f1['title'].errors" class="invalid-feedback">
+                      <div *ngIf="f1['title'].errors['required']">Tilte is required</div>
+                  </div>
+                </div>
+              
+              </div>
+              <div class="mb-3">
+                <div>
+                    <input type='text' formControlName="publisher" class="fst-italic" [ngClass]="{ 'is-invalid': submittedForCreation && f1['publisher'].errors }" required placeholder="Publisher "/>
+                    <div *ngIf="submittedForCreation && f1['publisher'].errors" class="invalid-feedback">
+                      <div *ngIf="f1['publisher'].errors['required']">Publisher is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="mb-3">
+                  <input type='number' formControlName="price" class="fst-italic" [ngClass]="{ 'is-invalid': submittedForCreation && f1['price'].errors }" required placeholder="Price "/>
+                  <div *ngIf="submittedForCreation && f1['price'].errors" class="invalid-feedback">
+                    <div *ngIf="f1['price'].errors['required']">Price is required</div>
+                   
+                </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                
+                <select formControlName="active"class="fst-italic"  [ngClass]="{ 'is-invalid': submittedForCreation && f1['active'].errors }" placeholder="Status ">  
+                    <option disabled [selected] ="true">Select Status</option>  
+                    <option value="1" >Active</option>  
+                    <option  value="0">Inactive</option>   
+                </select>  
+                <div *ngIf="submittedForCreation && f1['active'].errors" class="invalid-feedback">
+                  <div *ngIf="f1['active'].errors['required']">Status is required</div>
+              </div>
+              </div> 
+              <div class="form-group row">
+                <div class="mb-3">
+                  <input type='textarea' formControlName="content" class="fst-italic" [ngClass]="{ 'is-invalid': submittedForCreation && f1['content'].errors }" required placeholder="Content "/>
+                  <div *ngIf="submittedForCreation && f1['content'].errors" class="invalid-feedback">
+                    <div *ngIf="f1['content'].errors['required']">Content is required</div>
+                   
+                </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-sm-5">
+                    <input type="submit" [disabled]="loading" class='btn btn-outline-secondary' value='Create' id='search' />
+                </div>
+                {{isSuccess}}
+                {{createstatus}}
+
+              </div>
+              <div class="row">
+              </div>  
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

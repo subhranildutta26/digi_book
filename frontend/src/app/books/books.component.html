@@ -1,0 +1,103 @@
+<!--Search Book Section-->
+<div class="container mb-4">
+    <div class="row">
+      <div class="col-md-6 mx-auto ">
+        <div class="border-dark">
+          <div class=" text-center">
+            <h3>Search Book</h3>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="searchBookForm" (submit)="onSubmit()">
+              <div class="form-group row">
+                <div class="mb-3" >
+                    <input type='text'
+                    formControlName="category" class="fst-italic" [ngClass]="{ 'is-invalid': submitted && f['category'].errors }" required placeholder="Category " />
+                    <div *ngIf="submitted && f['category'].errors" class="invalid-feedback">
+                      <div *ngIf="f['category'].errors['required']">Category is required</div>
+                  </div>
+                  
+                <div class="mb-3">
+                    <input type='text'
+                    formControlName="title" class="fst-italic" [ngClass]="{ 'is-invalid': submitted && f['title'].errors }" required placeholder="Title " />
+                    <div *ngIf="submitted && f['title'].errors" class="invalid-feedback">
+                      <div *ngIf="f['title'].errors['required']">Tilte is required</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <input type="text" formControlName="author" class="fst-italic" [ngClass]="{ 'is-invalid': submitted && f['author'].errors }" placeholder="Author ">
+                  <div *ngIf="submitted && f['author'].errors" class="invalid-feedback">
+                    <div *ngIf="f['author'].errors['required']">Author name is required</div>
+                </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <div>
+                    <input type='text' formControlName="publisher" class="fst-italic" [ngClass]="{ 'is-invalid': submitted && f['publisher'].errors }" required placeholder="Publisher "/>
+                    <div *ngIf="submitted && f['publisher'].errors" class="invalid-feedback">
+                      <div *ngIf="f['publisher'].errors['required']">Publisher is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="mb-3">
+                  <input type='number' formControlName="price" class="fst-italic" [ngClass]="{ 'is-invalid': submitted && f['price'].errors }" required placeholder="Price "/>
+                  <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">
+                    <div *ngIf="f['price'].errors['required']">Price is required</div>
+                   
+                </div>
+                </div>
+                
+
+              </div>
+
+
+              <div class="row">
+                <div class="col-sm-5 ">
+                    <input type="submit" [disabled]="loading" class='btn btn-outline-secondary' value='Search' id='search' />
+                </div>
+                {{status}}
+              </div>
+              <div class="row">
+              </div>
+              </div>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!-- Search Result-->
+<!--Search Book Section-->
+<div class="container mb-4" *ngIf="gotSerachResult">
+  <div class="row">
+    <div class="col-md-6 mx-auto mt-3 pt-5">
+      <div class="border-dark">
+        <div class="text-center">
+          <h1>Searched Book</h1>
+        </div>
+        <div class="card-body">
+          <img id="myimage" [src]='thumbnail' />
+        </div>
+        <div>
+         <p>{{searchedData.title}}</p> 
+        </div>
+        <div>
+          <p>{{searchedData.category}}</p>
+        </div>
+        <div>
+         <p>{{searchedData.price}}</p> 
+        </div>
+        <div  class="container mb-4">
+
+          <button *ngIf="currentUser!=null" (click)="subscribe(searchedData.id)" class="btn btn-outline-secondary">Subscribe</button>
+          <p *ngIf="subscriptionData!=null">{{subscriptionData.message}}</p>
+         <p *ngIf="subrcriptionError!=null"> {{subrcriptionError}}</p> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
